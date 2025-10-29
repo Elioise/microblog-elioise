@@ -16,6 +16,9 @@ require_once "includes/cabecalho.php";
                 </div>
             </a>
         </article>
+
+var_dump()
+
     </div>
 
     <!-- FIM Card -->
