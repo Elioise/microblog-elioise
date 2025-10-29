@@ -42,17 +42,17 @@ require_once "../includes/cabecalho-admin.php";
 
 			<div class="mb-3">
 				<label class="form-label" for="nome">Nome:</label>
-				<input value="<?=$_POST['nome']  ??  ''?>"    class="form-control" type="text" id="nome" name="nome">
+				<input required="<?=$_POST['nome']  ??  ''?>"    class="form-control" type="text" id="nome" name="nome">
 			</div>
 
 			<div class="mb-3">
 				<label class="form-label" for="email">E-mail:</label>
-				<input value="<?=$_POST['email']  ??  ''?>"   class="form-control" type="email" id="email" name="email">
+				<input required="<?=$_POST['email']  ??  ''?>"   class="form-control" type="email" id="email" name="email">
 			</div>
 
 			<div class="mb-3">
 				<label class="form-label" for="senha">Senha:</label>
-				<input class="form-control" type="password" id="senha" name="senha">
+				<input required class="form-control" type="password" id="senha" name="senha">
 			</div>
 
 			<div class="mb-3">
