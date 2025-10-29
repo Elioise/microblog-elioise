@@ -38,7 +38,7 @@
                         </li>
 
 
-                       
+
                         <li class="nav-item">
                             <a class="nav-link" href="usuarios.php">Usuários</a>
                         </li>
@@ -60,4 +60,3 @@
 
     <main class="flex-shrink-0">
         <div class="container">
-
