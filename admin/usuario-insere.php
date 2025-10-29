@@ -1,4 +1,24 @@
 <?php 
+
+require_once "../src/Models/Usuario.php";
+
+//Variável que será usada para montar mensagens de erro personalizadas
+$erro = null;
+
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+	
+	//validação do preenchimento dos campos
+	if(	empty($_POST['nome']) || empty($_POST['email']) || empty($_POST['senha']) || empty($_POST['tipo'])
+
+	){
+		$erro = "preencha todos os campos";
+	} else {
+		echo "Campos ok!";
+	}
+}
+
+
+
 require_once "../includes/cabecalho-admin.php";
 
 ?>
@@ -10,6 +30,13 @@ require_once "../includes/cabecalho-admin.php";
 		<h2 class="text-center">
 		Inserir novo usuário
 		</h2>
+
+
+		<!-- o paragrafo abaixo ira aparecer  somente se houver algum erro, E neste caso, exibira  a messagem e erro. -->
+
+		<?php if($erro): ?>
+		<p class="alert alert-danger text-center"> <?=$erro?>   </p>
+		<?php endif; ?>
 				
 		<form class="mx-auto w-75" action="" method="post" id="form-inserir" name="form-inserir" autocomplete="off">
 
