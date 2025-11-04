@@ -34,4 +34,3 @@ class Conecta
     }
 }
 
-Conecta::getConexao();
