@@ -23,27 +23,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	) {
 		$erro = "preencha todos os campos";
 	} else {
-		$nome = Utils::sanitizar($_POST['nome']);
-		$email = Utils::sanitizar($_POST['email'], 'email');
-		$tipo = Utils::sanitizar($_POST['tipo']);
+		try {
+			$nome = Utils::sanitizar($_POST['nome']);
+			$email = Utils::sanitizar($_POST['email'], 'email');
+			$tipo = Utils::sanitizar($_POST['tipo']);
 
 
-		//capturando e codificando (gerando um hash) da senha
+			//capturando e codificando (gerando um hash) da senha
 
-		$senha = Utils::codificarSenha($_POST['senha']);
-
-
+			$senha = Utils::codificarSenha($_POST['senha']);
 
 
 
-		//criando um objeto pra um novo usuario com seus dados
-		$novoUsuario = new Usuario($nome, $email, $senha, $tipo);
 
-		//Executar o serviço e passar os novos dados
-		$usuarioServico->inserir($novoUsuario);
 
-		header("location:usuarios.php");
-		exit;
+			//criando um objeto pra um novo usuario com seus dados
+			$novoUsuario = new Usuario($nome, $email, $senha, $tipo);
+
+			//Executar o serviço e passar os novos dados
+			$usuarioServico->inserir($novoUsuario);
+
+			header("location:usuarios.php");
+			exit;
+		} catch (Throwable $e) {
+
+			/* Se alguma ação dentro do try falahar, o PHP vai lançar (usando a classe Throwable) um erro/eceção. Ao usar o parâmetro "e" (ou outro nome), temos acesso aos detalhes do que aconteceu. */
+			$erro = "Erro ao inserir usuario. <br>"  . $e->getMessage();
+		}
 	}
 }
 
