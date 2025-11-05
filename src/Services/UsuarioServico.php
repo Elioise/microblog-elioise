@@ -41,4 +41,24 @@ class UsuarioServico
         $consulta = $this->conexao->query($sql);
         return $consulta->fetchAll();
     }
+
+
+    //buscar porID (SELECT/WHERE)
+
+    public function buscarPorId(int $valorId):?array {
+
+       $sql = "SELECT * FROM usuarios WHERE id = :id";
+       $consulta = $this->conexao->prepare($sql);
+       $consulta->bindValue(":id", $valorId);
+       $consulta->execute();
+
+       //Usando o "Elvis operator"
+    //    Sobre o ?: conhecido com "Elvis Operator"
+        //É uma condicional simplificada/abreviada em que, se a condição/expressão for valida (ou seja, tem dados), 
+        //ela mesma é retornada. Caso contrário, é retornado null
+      
+ 
+
+       return $consulta->fetch() ?: null;
+    }
 }

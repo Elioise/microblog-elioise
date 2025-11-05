@@ -34,6 +34,7 @@ require_once "../includes/cabecalho-admin.php";
 	<article class="col-12 bg-white rounded shadow my-1 py-4">
 
 		<h2 class="text-center">Usuários <span class="badge bg-dark"><?=count($usuarios)?></span></h2>
+		<!-- pra contar  -->
 
 		<?php if ($erro): ?>
 			<p class="alert alert-danger text-center"> <?= $erro ?> </p>
@@ -76,8 +77,9 @@ require_once "../includes/cabecalho-admin.php";
 							</a>
 
 							<a class="btn btn-danger excluir"
-								href="usuario-exclui.php?id=<?=$usuario['id']?>">
+								href="usuario-exclui.php?id=<?=$usuario['id']?>">  
 								<i class="bi bi-trash"></i> Excluir
+								<!-- pra aparecer o id -->
 							</a>
 						</td>
 					</tr>
