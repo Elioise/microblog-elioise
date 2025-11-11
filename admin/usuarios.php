@@ -33,7 +33,7 @@ require_once "../includes/cabecalho-admin.php";
 <div class="row">
 	<article class="col-12 bg-white rounded shadow my-1 py-4">
 
-		<h2 class="text-center">Usuários <span class="badge bg-dark"><?=count($usuarios)?></span></h2>
+		<h2 class="text-center">Usuários <span class="badge bg-dark"><?= count($usuarios) ?></span></h2>
 		<!-- pra contar  -->
 
 		<?php if ($erro): ?>
@@ -60,34 +60,34 @@ require_once "../includes/cabecalho-admin.php";
 
 				<tbody>
 
-				<?php
-				foreach($usuarios as $usuario):
+					<?php
+					foreach ($usuarios as $usuario):
 
 
 
-				?>
-					<tr>
-						<td> <?=$usuario['nome']?> </td>
-						<td> <?=$usuario['email']?> </td>
-						<td> <?=$usuario['tipo']?> </td>
-						<td class="text-center">
-							<a class="btn btn-warning"
-								href="usuario-atualiza.php?id=<?=$usuario['id']?>">
-								<i class="bi bi-pencil"></i> Atualizar
-							</a>
+					?>
+						<tr>
+							<td> <?= $usuario['nome'] ?> </td>
+							<td> <?= $usuario['email'] ?> </td>
+							<td> <?= $usuario['tipo'] ?> </td>
+							<td class="text-center">
+								<a class="btn btn-warning"
+									href="usuario-atualiza.php?id=<?= $usuario['id'] ?>">
+									<i class="bi bi-pencil"></i> Atualizar
+								</a>
 
-							<a class="btn btn-danger excluir"
-								href="usuario-exclui.php?id=<?=$usuario['id']?>">  
-								<i class="bi bi-trash"></i> Excluir
-								<!-- pra aparecer o id -->
-							</a>
-						</td>
-					</tr>
+								<a class="btn btn-danger excluir"
+									href="usuario-exclui.php?id=<?= $usuario['id'] ?>">
+									<i class="bi bi-trash"></i> Excluir
+									<!-- pra aparecer o id -->
+								</a>
+							</td>
+						</tr>
 
 					<?php
 
-						endforeach
-						?>
+					endforeach
+					?>
 
 				</tbody>
 			</table>
