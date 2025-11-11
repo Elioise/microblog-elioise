@@ -5,6 +5,9 @@ require_once "../src/Models/Usuario.php";
 require_once "../src/Services/UsuarioServico.php";
 require_once "../src/Helpers/Utils.php";
 
+require_once "../src/Services/AutenticacaoServico.php";
+AutenticacaoServico::exigirLogin();
+
 
 // Pegar e sanitizar o id vindo através de parametro da URL
 $id = Utils::sanitizar($_GET['id'], 'inteiro');

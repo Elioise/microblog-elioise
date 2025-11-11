@@ -3,6 +3,9 @@
 	require_once "../src/Services/UsuarioServico.php";
 	require_once "../src/Helpers/Utils.php";
 
+	require_once "../src/Services/AutenticacaoServico.php";
+	AutenticacaoServico::exigirLogin();
+
 
 
 	//Captura o valor do id via Url e sanitiza pra garantir que é o valor inteiro
