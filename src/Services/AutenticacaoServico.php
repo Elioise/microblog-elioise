@@ -38,4 +38,24 @@ class AutenticacaoServico {
 
     }
 
+//pra sair 
+    public static function logout():void {
+            self::iniciarSessao();
+
+            session_destroy();
+            Utils::redirecionarPara("../login.php?saiu");
+    }
+
+
+
+
+    public static function exigirAdmin():void {
+
+        self::iniciarSessao();
+
+        if($_SESSION['tipo'] !== 'admin'){
+            Utils::redirecionarPara("nao=autorizado.php");
+        }
+    }
+
 }

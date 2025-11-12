@@ -1,12 +1,76 @@
-<?php 
-require_once "includes/cabecalho.php";
+<?php
+require_once "src/Database/Conecta.php";
+require_once "src/Services/UsuarioServico.php";
+require_once "src/Helpers/Utils.php";
+require_once "src/Services/AutenticacaoServico.php";
+ 
+$usuarioServico = new UsuarioServico();
+ 
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    if(empty($_POST['email']) || empty($_POST['senha'])){
+        Utils::redirecionarPara("login.php?campos_obrigatorios");
+    } else {
+        // Captura e-mail e senha
+        $email = Utils::sanitizar($_POST['email'],  'email');
+        $senha = $_POST['senha'];
+ 
+        // Busca pelo usuário através do e-mail
+       $dadosDoUsuario = $usuarioServico->buscarPorEmail($email);
+
+        // Se não existir usuário, ou usuário invalido, redirecione para login.php
+        if(!$dadosDoUsuario){
+            Utils::redirecionarPara("login.php?dados_incorretos");
+        } else { 
+           // echo "Opa, encontrou! 😀";
+        }
 
 
-//  Mensagens do processo de login/logout
+
+        // Caso contrário, verifique a senha
+        if(  password_verify( $senha, $dadosDoUsuario['senha'])){
+            // Estando correta, faça o login e redirecione 
+             //echo"senha correta, pode entrar";
+
+
+              AutenticacaoServico::login(
+            $dadosDoUsuario['id'],
+            $dadosDoUsuario['nome'],
+            $dadosDoUsuario['tipo'],
+
+
+
+         );
+
+ 
+        }else{
+            // Estando errado, mantenha em login.php
+
+         //echo"senha errada, vaza daqui";
+             Utils::redirecionarPara("login.php?dados_incorretos");
+        
+        }
+        
+        
+      
+    }
+}
+ 
+/* mensagens do processo de login/logout */
 if(isset($_GET['acesso_proibido'])){
     $mensagem = "Você deve logar primeiro";
+} elseif(isset($_GET['campos_obrigatorios'])) {
+        $mensagem = "Preencha e-mail e senha";
+} elseif(isset($_GET['dados_incorretos'])){
+     $mensagem = "Algo de errado não está certo";
+} elseif(isset($_GET['saiu'])){// pra sair
+
+        $mensagem = "você saiu do sistema";
 }
+ 
+require_once "includes/cabecalho.php";
 ?>
+ 
+ 
 
 <div class="row">
     <div class="bg-white rounded shadow col-12 my-1 py-4">

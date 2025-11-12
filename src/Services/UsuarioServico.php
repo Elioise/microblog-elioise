@@ -100,11 +100,23 @@ class UsuarioServico
        $consulta->bindValue(":id", $valorId, PDO::PARAM_INT);
        $consulta->execute();
 
+}
 
+//buscarPorEmail (SELECT)
+    public function buscarPorEmail(string $valorEmail): ?array {
+            $sql = "SELECT * FROM usuarios WHERE email = :email";
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":email", $valorEmail);
+            $consulta->execute();
 
-
-
-
+            // O return é TRUE?
+          //  entâo retorne os dados como array (fetch)
+          //senão retorne null
+            return $consulta->fetch() ?: null;
 
     }
+
+
+
+
 }
