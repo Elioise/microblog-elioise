@@ -5,6 +5,7 @@
 
 	require_once "../src/Services/AutenticacaoServico.php";
 	AutenticacaoServico::exigirLogin();
+	AutenticacaoServico::exigirAdmin();
 
 
 

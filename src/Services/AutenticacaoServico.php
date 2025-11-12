@@ -54,7 +54,7 @@ class AutenticacaoServico {
         self::iniciarSessao();
 
         if($_SESSION['tipo'] !== 'admin'){
-            Utils::redirecionarPara("nao=autorizado.php");
+            Utils::redirecionarPara("nao-autorizado.php");
         }
     }
 
